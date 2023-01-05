@@ -1,68 +1,24 @@
 import React, { memo } from "react";
 import { StyleSheet, Image, FlatList } from "react-native";
 import { Button } from "@ui-kitten/components";
-import { useNavigation, NavigationProp } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 import Container from "components/Container";
 
 import { Images } from "assets/images";
-import { RootStackParamList } from "../../navigation/type";
 import AdMob from "components/AdMob";
 
 const Intro = memo(() => {
-  const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
+  const { navigate } = useNavigation();
 
   const data = [
     {
-      children: "OnBoarding",
-      onPress: () => navigate("Onbroading", { screen: "Onboarding" }),
+      children: "HomePage",
+      onPress: () => navigate("HomePage"),
     },
     {
       children: "Auth",
       onPress: () => navigate("Auth", { screen: "Home" }),
-    },
-    {
-      children: "Social",
-      onPress: () => navigate("Social", { screen: "Home" }),
-    },
-    {
-      children: "Profile",
-      onPress: () => navigate("Profile", { screen: "Home" }),
-    },
-    {
-      children: "Finance",
-      onPress: () => navigate("Finance", { screen: "Home" }),
-    },
-    {
-      ads: true,
-    },
-    {
-      children: "ECommerce",
-      onPress: () => navigate("ECommerce", { screen: "Home" }),
-    },
-    {
-      children: "Reading",
-      onPress: () => navigate("Reading", { screen: "Home" }),
-    },
-    {
-      children: "Fitness",
-      onPress: () => navigate("Fitness", { screen: "Home" }),
-    },
-    {
-      children: "Health",
-      onPress: () => navigate("Health", { screen: "Home" }),
-    },
-    {
-      children: "Education",
-      onPress: () => navigate("Education", { screen: "Home" }),
-    },
-    {
-      children: "Crypto",
-      onPress: () => navigate("Crypto", { screen: "Home" }),
-    },
-    {
-      children: "Delivery",
-      onPress: () => navigate("Delivery", { screen: "Home" }),
     },
   ];
 

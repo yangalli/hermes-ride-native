@@ -6,7 +6,7 @@ export const PageOnBoarding7 = [
     image: Images.shield,
     color: "#215190",
     aspectRatio: 1,
-    title: "Directly answer customers’ financial",
+    title: "Escolha entre motorista ou passageiro",
     description:
       "Open an app geared toward stock trading, and you’ll probably discover a dictionary of investing terms that rivals Investopedia. ",
   },
@@ -15,7 +15,7 @@ export const PageOnBoarding7 = [
     image: Images.shield,
     color: "#4B9BAE",
     aspectRatio: 1,
-    title: "Directly answer customers’ financial",
+    title: "Escolha entre motorista ou passageiro",
     description:
       "Open an app geared toward stock trading, and you’ll probably discover a dictionary of investing terms that rivals Investopedia. ",
   },
