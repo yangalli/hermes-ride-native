@@ -28,12 +28,6 @@ const Activity = memo(({ data, title }: Props) => {
     <>
       <View style={styles.title}>
         <Text category="title2">{title}</Text>
-        <TouchableOpacity style={styles.btnDelete}>
-          <Text category="caption1" status={"snow"} marginRight={4}>
-            Delete all
-          </Text>
-          <Icon pack="assets" name="cancel" style={styles.iconCancel} />
-        </TouchableOpacity>
       </View>
       {dataInput.map((item, i) => {
         return (

@@ -11,10 +11,11 @@ import NavigationAction from "components/NavigationAction";
 import { Images } from "assets/images";
 import Activity from "./Activity";
 import BottomTab from "components/BottomTab";
+import useRides from "../../hooks/useRides";
 
 const Activities = memo(() => {
   const styles = useStyleSheet(themedStyles);
-
+  const { rides } = useRides();
   const [dataToday, setDataToday] = React.useState(DATA_TODAY);
 
   return (
@@ -23,10 +24,9 @@ const Activities = memo(() => {
         style={styles.header}
         title={"Motoristas"}
         accessoryLeft={<NavigationAction icon="undo" status="opacity" />}
-        accessoryRight={<NavigationAction icon="calendar" status="opacity" />}
       />
       <Content contentContainerStyle={styles.content}>
-        <Activity title="Today" data={dataToday} />
+        <Activity title="Motoristas" data={dataToday} />
       </Content>
       <BottomTab />
     </Container>

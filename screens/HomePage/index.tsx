@@ -1,7 +1,6 @@
 import React, { memo } from "react";
 import { useWindowDimensions, Image } from "react-native";
 import {
-  TopNavigation,
   StyleService,
   useStyleSheet,
   Layout,
@@ -9,7 +8,6 @@ import {
 } from "@ui-kitten/components";
 import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
 import Text from "components/Text";
 import Container from "components/Container";
 import { Images } from "assets/images";
@@ -22,11 +20,12 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import Lottie from 'lottie-react-native';
 
 const HomePage = memo(() => {
-  const { goBack, navigate } = useNavigation();
-  const { height, width } = useWindowDimensions();
-  const { top, bottom } = useSafeAreaInsets();
+  const { navigate } = useNavigation();
+  const { width } = useWindowDimensions();
+  const { bottom } = useSafeAreaInsets();
   const styles = useStyleSheet(themedStyles);
   const translationX = useSharedValue(0);
   const scrollHandler = useAnimatedScrollHandler((event) => {
@@ -76,7 +75,7 @@ const HomePage = memo(() => {
         >
           {item.des}
         </Text>
-        <Image source={item.image} style={{ alignSelf: "center" }} />
+        <Lottie source={require('./car-animation.json')} autoPlay loop />
       </Animated.View>
     );
   }, []);
@@ -92,16 +91,6 @@ const HomePage = memo(() => {
 
   return (
     <Container style={styles.container}>
-      <TopNavigation
-        style={{ zIndex: 10 }}
-        title={() => (
-          <Image
-            source={Images.logo4}
-            /* @ts-ignore */
-            style={styles.logo}
-          />
-        )}
-      />
       <Animated.ScrollView
         showsHorizontalScrollIndicator={false}
         horizontal
@@ -114,6 +103,7 @@ const HomePage = memo(() => {
           return <RenderItem item={item} key={index} />;
         })}
       </Animated.ScrollView>
+
       <Layout
         style={[
           styles.btmView,

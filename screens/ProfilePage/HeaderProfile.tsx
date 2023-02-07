@@ -97,6 +97,7 @@ const themedStyles = StyleService.create({
     marginHorizontal: 24,
     justifyContent: "space-between",
     paddingHorizontal: 32,
+    marginTop: 16
   },
   line: {
     width: 1,

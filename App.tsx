@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-
+import { QueryClient, QueryClientProvider } from "react-query";
 import useCachedResources from "./hooks/useCachedResources";
 import * as eva from "@eva-design/eva";
 import { default as darkTheme } from "./constants/theme/dark.json";
@@ -18,6 +18,7 @@ import AppContainer from "./navigation/AppContainer";
 export default function App() {
   const [theme, setTheme] = React.useState<"light" | "dark">("dark");
   const isLoadingComplete = useCachedResources();
+  const queryClient = new QueryClient();
 
   React.useEffect(() => {
     AsyncStorage.getItem("theme").then((value: any) => {
@@ -37,28 +38,30 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
-          <IconRegistry icons={[EvaIconsPack, AssetIconsPack]} />
-          <ApplicationProvider
-            {...eva}
-            theme={
-              theme === "light"
-                ? { ...eva.light, ...customTheme, ...lightTheme }
-                : { ...eva.dark, ...customTheme, ...darkTheme }
-            }
-            /* @ts-ignore */
-            customMapping={customMapping}
-          >
-            <SafeAreaProvider>
-              <StatusBar
-                style={theme === "light" ? "dark" : "light"}
-                translucent={true}
-                backgroundColor={"#00000000"}
-              />
-              <AppContainer />
-            </SafeAreaProvider>
-          </ApplicationProvider>
-        </ThemeContext.Provider>
+        <QueryClientProvider client={queryClient}>
+          <ThemeContext.Provider value={{ theme, toggleTheme }}>
+            <IconRegistry icons={[EvaIconsPack, AssetIconsPack]} />
+            <ApplicationProvider
+              {...eva}
+              theme={
+                theme === "light"
+                  ? { ...eva.light, ...customTheme, ...lightTheme }
+                  : { ...eva.dark, ...customTheme, ...darkTheme }
+              }
+              /* @ts-ignore */
+              customMapping={customMapping}
+            >
+              <SafeAreaProvider>
+                <StatusBar
+                  style={theme === "light" ? "dark" : "light"}
+                  translucent={true}
+                  backgroundColor={"#00000000"}
+                />
+                <AppContainer />
+              </SafeAreaProvider>
+            </ApplicationProvider>
+          </ThemeContext.Provider>
+        </QueryClientProvider>
       </SafeAreaProvider>
     );
   }

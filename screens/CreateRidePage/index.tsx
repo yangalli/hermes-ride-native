@@ -2,7 +2,6 @@ import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Input, TopNavigation, useTheme } from "@ui-kitten/components";
 import { useNavigation } from "@react-navigation/native";
-
 import Text from "components/Text";
 import Container from "components/Container";
 import AnimatedStep from "components/AnimatedStep";
@@ -12,9 +11,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import useLayout from "hooks/useLayout";
 
 const CreateRidePage = memo(() => {
-  const { goBack, navigate } = useNavigation();
-  const theme = useTheme();
-  const { width, bottom } = useLayout();
+  const { navigate } = useNavigation();
+  const { width } = useLayout();
   const [index, setIndex] = React.useState<number>(0);
 
   const Tab1 = React.useCallback(() => {

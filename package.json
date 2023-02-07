@@ -15,9 +15,12 @@
     "@react-navigation/native-stack": "^6.9.7",
     "@ui-kitten/components": "^5.1.2",
     "@ui-kitten/eva-icons": "^5.1.2",
+    "axios": "^1.2.2",
+    "camelcase-keys": "^8.0.2",
     "expo": "~47.0.8",
     "expo-splash-screen": "^0.17.5",
     "expo-status-bar": "~1.4.2",
+    "lottie-react-native": "^5.1.5",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
@@ -29,7 +32,9 @@
     "react-native-svg": "13.4.0",
     "react-native-tab-view": "^3.3.4",
     "react-native-web": "~0.18.9",
-    "react-native-web-refresh-control": "^1.1.1"
+    "react-native-web-refresh-control": "^1.1.1",
+    "react-query": "^3.39.2",
+    "snakecase-keys": "^5.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

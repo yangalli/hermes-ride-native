@@ -94,11 +94,13 @@ const ProfilePage = memo(() => {
           </View>
         }
       />
+
       <Image
         source={Images.bgTeacher}
         /* @ts-ignore */
         style={styles.bgHeader}
       />
+
       <Animated.View style={scaleAvatar}>
         <Avatar
           source={DATA_USER.avatar}
@@ -107,6 +109,7 @@ const ProfilePage = memo(() => {
           style={[styles.avatar]}
         />
       </Animated.View>
+
       <Animated.ScrollView
         showsVerticalScrollIndicator={false}
         onScroll={scrollHandler}
@@ -117,25 +120,26 @@ const ProfilePage = memo(() => {
         }}
       >
         <HeaderTeacher data={DATA_USER} />
+
         <View style={styles.action}>
           <Button
             accessoryLeft={<Icon pack="assets" name="star" />}
             status={"control"}
             size={"50"}
-            children="Message"
+            children="Informações"
             style={styles.mess}
           />
           <Button
             accessoryLeft={<Icon pack="assets" name="addUser" />}
             size="50"
-            children="Following"
+            children="Motoristas"
             style={styles.following}
           />
         </View>
         <FrequencyTab
           selectedIndex={selectedIndex}
           onChange={setSelectedIndex}
-          tabs={["Wishlist", "Recent View"]}
+          tabs={["Minhas Viagens", "Viagens Anteriores"]}
           style={styles.tabBar}
         />
         <ViewPager
@@ -198,16 +202,18 @@ const themedStyles = StyleService.create({
     marginBottom: 8,
   },
 });
+
 const DATA_USER = {
-  name: "Isabella Comaearroti",
+  name: "Yan Galli",
   avatar: Images.avatar11,
   following: 348,
   follower: 24,
   loves: 233,
 };
+
 const DATA_COLLECTION = [
-  { id: 0, title: "CAKE", image: Images.collection },
-  { id: 1, title: "Binance", image: Images.collection1 },
-  { id: 2, title: "BITCOIN", image: Images.collection2 },
-  { id: 3, title: "ETHEREUM", image: Images.collection3 },
+  { id: 0, title: "Motorista", image: Images.collection },
+  { id: 1, title: "Motorista", image: Images.collection1 },
+  { id: 2, title: "Motorista", image: Images.collection2 },
+  { id: 3, title: "Motorista", image: Images.collection3 },
 ];

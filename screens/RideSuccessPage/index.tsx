@@ -1,28 +1,26 @@
 import React, { memo } from "react";
 import { View, Image, ImageBackground } from "react-native";
 import {
-  TopNavigation,
   StyleService,
   useStyleSheet,
   Button,
 } from "@ui-kitten/components";
 import { useNavigation } from "@react-navigation/native";
 import useLayout from "hooks/useLayout";
-
+import Lottie from "lottie-react-native";
 import Text from "components/Text";
 import Content from "components/Content";
 import Container from "components/Container";
-import NavigationAction from "components/NavigationAction";
 import { Images } from "assets/images";
 
 const SuccessOrder = memo(() => {
-  const { goBack, navigate } = useNavigation();
+  const { navigate } = useNavigation();
   const { height, width } = useLayout();
   const styles = useStyleSheet(themedStyles);
 
-  const SIZE_ELLIPSE = 420 * (width / 375);
-  const WIDTH_ORNAMENT = 285.06 * (width / 375);
-  const HEIGHT_ORNAMENT = 281.01 * (height / 812);
+  const SIZE_ELLIPSE = 380 * (width / 375);
+  const WIDTH_ORNAMENT = 205.06 * (width / 375);
+  const HEIGHT_ORNAMENT = 201.01 * (height / 812);
 
   return (
     <Container style={styles.container}>
@@ -52,17 +50,12 @@ const SuccessOrder = memo(() => {
               height: HEIGHT_ORNAMENT,
             }}
           />
-          <Image
-            source={Images.success}
-            style={{
-              position: "absolute",
-            }}
-          />
+          <Lottie source={require('./success-animation.json')} autoPlay />
         </ImageBackground>
       </Content>
       <View style={styles.bottom}>
-        <Button children="Voltar ao início" status={"fill"} size={"48"}  onPress={() => navigate("DriversPage")}/>
-        <Button children="Checar minha viagem" style={styles.btnHome} onPress={() => navigate("ProfilePage")}/>
+        <Button children="Voltar ao início" status={"fill"} size={"48"} onPress={() => navigate("DriversPage")} />
+        <Button children="Checar minha viagem" style={styles.btnHome} onPress={() => navigate("ProfilePage")} />
       </View>
     </Container>
   );

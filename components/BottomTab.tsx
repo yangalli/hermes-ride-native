@@ -89,8 +89,6 @@ const themedStyles = StyleService.create({
 });
 const DATA = [
   { id: 1, icon: "barChart1" },
-  { id: 2, icon: "exchange" },
-  { id: 3, icon: "logo" },
-  { id: 4, icon: "search" },
-  { id: 5, icon: "creditCard" },
+  { id: 2, icon: "logo" },
+  { id: 3, icon: "search" },
 ];

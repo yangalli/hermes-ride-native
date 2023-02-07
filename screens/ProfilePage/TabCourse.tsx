@@ -7,7 +7,6 @@ import {
   Icon,
 } from "@ui-kitten/components";
 import useLayout from "hooks/useLayout";
-
 import Text from "components/Text";
 import AnimatedAppearance from "components/AnimatedAppearance";
 
@@ -53,7 +52,6 @@ const TabCourse = memo(({ data }: DataProps) => {
                   <Icon pack="assets" name="exclude" />
                 ) : null}
                 <Text category="call-out" style={styles.textCollection}>
-                  The{"\n"}
                   {item.title}
                 </Text>
               </ImageBackground>

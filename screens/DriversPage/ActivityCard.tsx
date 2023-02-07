@@ -71,9 +71,10 @@ const ActivityCard = memo(({ item, data }: ItemProps) => {
     return {
       alignSelf: "center",
       transform: [{ rotate: `${rotateX.value}deg` }],
-      marginRight:12
+      marginRight: 12
     };
   });
+
   const containerAnimated = useAnimatedStyle(() => {
     const background = interpolateColor(
       progress.value,

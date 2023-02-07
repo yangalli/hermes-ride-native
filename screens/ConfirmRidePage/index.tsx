@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Image, View } from "react-native";
+import { View } from "react-native";
 import {
   TopNavigation,
   StyleService,
@@ -11,23 +11,9 @@ import {
   useTheme,
 } from "@ui-kitten/components";
 import useLayout from "hooks/useLayout";
-
 import Container from "components/Container";
 import Text from "components/Text";
 import NavigationAction from "components/NavigationAction";
-import { Images } from "assets/images";
-import Animated, {
-  Easing,
-  Extrapolate,
-  interpolate,
-  useAnimatedScrollHandler,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
-
-import Dots from "components/Dots";
-import StarRate from "components/StarRate";
 import { RefreshControl } from "react-native-web-refresh-control";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useNavigation } from "@react-navigation/native";
@@ -37,47 +23,8 @@ const ProductDetails = memo(() => {
   const { goBack, navigate } = useNavigation();
   const { height, width, top, bottom } = useLayout();
   const styles = useStyleSheet(themedStyles);
-  const translationX = useSharedValue(0);
-  const scrollHandler = useAnimatedScrollHandler((event) => {
-    translationX.value = event.contentOffset.x;
-  });
-  const [rate, setRate] = React.useState(4);
   const [value, setValue] = React.useState<number>(3);
 
-  const RenderItem = React.useCallback(({ item, index }) => {
-    const styleAni = useAnimatedStyle(() => {
-      let input = [
-        (item.id - 1) * width,
-        item.id * width,
-        (item.id + 1) * width,
-      ];
-      const scale = interpolate(
-        translationX.value,
-        input,
-        [0.61, 1, 0.61],
-        Extrapolate.CLAMP
-      );
-      const opacity = interpolate(translationX.value, input, [-1, 1, -1]);
-      return {
-        alignItems: "center",
-        justifyContent: "center",
-        marginBottom: 44,
-        transform: [{ scale: scale }],
-        opacity: withTiming(opacity, {
-          duration: 350,
-          easing: Easing.linear,
-        }),
-      };
-    });
-    return (
-      <Animated.View style={[{ width: width }, styleAni]}>
-        <Image
-          source={item.image}
-          style={{ width: width - 160, height: width - 203.8 }}
-        />
-      </Animated.View>
-    );
-  }, []);
   return (
     <Container style={styles.container} level="2">
       <Layout
@@ -118,20 +65,18 @@ const ProductDetails = memo(() => {
                 accessoryRight={<Icon pack="assets" name="heart" />}
               />
             </View>
-            <Text children="123ETH" status="primary" category="title4" />
-            <StarRate
-              style={styles.starRate}
-              defaultRate={rate}
-              setDefaultRate={setRate}
-              reviewer={214}
-            />
+
+            <Text children="(61) 99901-3066" status="primary" category="title4" />
+
             <Text
+              style={styles.body}
               status="snow"
               category="body"
               children="Occaecat ipsum magna veniam proident aliquip irure enim mollit cillum esse. Dolore eu amet Lorem est quis reprehenderit eu. Aute incididunt magna voluptate incididunt irure tempor amet est quis ullamco..."
             />
+
             <View style={styles.qty}>
-              <Text children="qty" uppercase status="white" category="title4" />
+              <Text children="Quantidade" uppercase status="white" category="title4" />
               <View style={styles.card}>
                 <Button
                   status="transparent"
@@ -207,6 +152,9 @@ const themedStyles = StyleService.create({
     right: 0,
     bottom: 0,
   },
+  body: {
+    marginTop: 16
+  },
   card: {
     borderRadius: 12,
     borderColor: "color-basic-1500",
@@ -241,9 +189,3 @@ const themedStyles = StyleService.create({
     paddingBottom: 60,
   },
 });
-const data = [
-  { id: 0, image: Images.donut },
-  { id: 1, image: Images.donut },
-  { id: 2, image: Images.donut },
-  { id: 3, image: Images.donut },
-];
