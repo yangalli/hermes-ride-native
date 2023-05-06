@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import {
   TopNavigation,
   StyleService,
@@ -18,6 +18,10 @@ const Activities = memo(() => {
   const { rides } = useRides();
   const [dataToday, setDataToday] = React.useState(DATA_TODAY);
 
+  useEffect(() => {
+    console.log(rides);
+  }, [rides])
+
   return (
     <Container style={styles.container}>
       <TopNavigation
@@ -26,7 +30,7 @@ const Activities = memo(() => {
         accessoryLeft={<NavigationAction icon="undo" status="opacity" />}
       />
       <Content contentContainerStyle={styles.content}>
-        <Activity title="Motoristas" data={dataToday} />
+        <Activity title="Motoristas" data={rides} />
       </Content>
       <BottomTab />
     </Container>
@@ -54,44 +58,56 @@ const DATA_TODAY = [
   {
     id: 0,
     avatar: Images.avatar0,
-    name: "Yan Galli",
-    amount: 4,
-    data: [
-      { title: "Telefone", value: "(61) 99901-3066" },
-      { title: "Carro", value: "Honda HRV" },
-      { title: "Dia da saída", value: "13/01/23" },
-      { title: "Horário de saída", value: "12:00" },
-      { title: "Local da Saída", value: "Asa Sul" },
-      { title: "Sugestão contribuição", value: "50 reais" },
-    ],
+    carSpaces: 4,
+    cellphone: "(61) 99901-3066",
+    departureDay: "13/01/23",
+    departureTime: "12:00",
+    departurePlace: "Asa Sul",
+    contributionSuggestion: "50 reais",
+    driver: {
+      name: "Yan Galli",
+      cars: [
+        {
+          name: "Honda HRV",
+        }
+      ]
+    }
   },
   {
     id: 1,
     avatar: Images.avatar2,
-    name: "Alex Turboe",
-    amount: 3,
-    data: [
-      { title: "Telefone", value: "(61) 99901-3066" },
-      { title: "Carro", value: "Honda HRV" },
-      { title: "Dia da saída", value: "13/01/23" },
-      { title: "Horário de saída", value: "12:00" },
-      { title: "Local da Saída", value: "Asa Sul" },
-      { title: "Sugestão contribuição", value: "50 reais" },
-    ],
+    carSpaces: 3,
+    cellphone: "(61) 99901-3066",
+    departureDay: "13/01/23",
+    departureTime: "12:00",
+    departurePlace: "Asa Sul",
+    contributionSuggestion: "50 reais",
+    driver: {
+      name: "Alex Turboe",
+      cars: [
+        {
+          name: "Honda HRV",
+        }
+      ]
+    }
   },
   {
     id: 2,
     avatar: Images.avatar3,
-    name: "Flex Adameith",
-    amount: 2,
-    data: [
-      { title: "Telefone", value: "(61) 99901-3066" },
-      { title: "Carro", value: "Honda HRV" },
-      { title: "Dia da saída", value: "13/01/23" },
-      { title: "Horário de saída", value: "12:00" },
-      { title: "Local da Saída", value: "Asa Sul" },
-      { title: "Sugestão contribuição", value: "50 reais" },
-    ],
+    carSpaces: 2,
+    cellphone: "(61) 99901-3066",
+    departureDay: "13/01/23",
+    departureTime: "12:00",
+    departurePlace: "Asa Sul",
+    contributionSuggestion: "50 reais",
+    driver: {
+      name: "Alex Turboe",
+      cars: [
+        {
+          name: "Honda HRV",
+        }
+      ]
+    }
   },
 ];
 

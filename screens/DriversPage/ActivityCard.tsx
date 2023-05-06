@@ -9,7 +9,7 @@ import {
   Button
 } from "@ui-kitten/components";
 import useLayout from "hooks/useLayout";
-
+import { Images } from "assets/images";
 import Text from "components/Text";
 import Animated, {
   interpolate,
@@ -24,24 +24,25 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
+import Driver from "../../types/entities/Driver";
 
 interface Props {
   id: number;
   avatar: ImageRequireSource;
-  name: string;
-  amount: number;
-}
-interface DataProps {
-  title: string;
-  value: string | number;
+  carSpaces: number;
+  cellphone: string;
+  departureDay: string;
+  departureTime: string;
+  departurePlace: string;
+  contributionSuggestion: string;
+  driver: Driver;
 }
 interface ItemProps {
   item: Props;
-  data: DataProps[];
 }
 
-const ActivityCard = memo(({ item, data }: ItemProps) => {
-  const { height, width, top, bottom } = useLayout();
+const ActivityCard = memo(({ item }: ItemProps) => {
+  const { width } = useLayout();
   const theme = useTheme();
   const styles = useStyleSheet(themedStyles);
   const { navigate } = useNavigation();
@@ -97,6 +98,7 @@ const ActivityCard = memo(({ item, data }: ItemProps) => {
     }
     open.value = !open.value;
   }, []);
+
   return (
     <Animated.View style={containerAnimated}>
       <TouchableOpacity
@@ -105,18 +107,18 @@ const ActivityCard = memo(({ item, data }: ItemProps) => {
         onPress={handleDrop}
       >
         <View style={styles.title}>
-          <Avatar source={item.avatar} size={"48"} />
+          <Avatar source={Images.avatar3} size={"48"} />
           <View>
             <Text marginLeft={16} category="headline" marginBottom={4}>
-              {item.name}
+              {item.driver.name}
             </Text>
             <Text
               category="footnote"
               marginLeft={16}
-              status={item.amount >= 0 ? "high-light" : "red"}
+              status={item.carSpaces >= 0 ? "high-light" : "red"}
             >
-              {item.amount >= 0 ? "Espaços: " : "Espaços: "}
-              {item.amount < 0 ? item.amount * -1 : item.amount}
+              {item.carSpaces >= 0 ? "Espaços: " : "Espaços: "}
+              {item.carSpaces < 0 ? item.carSpaces * -1 : item.carSpaces}
             </Text>
           </View>
         </View>
@@ -143,23 +145,44 @@ const ActivityCard = memo(({ item, data }: ItemProps) => {
             nativeEvent: {
               layout: { height: h },
             },
-          }) => {}}
+          }) => { }}
         >
-          <>
-            {data.map((item, i) => {
-              return (
-                <View
-                  key={item.title + i}
-                  style={{ width: 152 * (width / 375), marginBottom: 16 }}
-                >
-                  <Text category="caption1" status={"placeholder"}>
-                    {item.title}
-                  </Text>
-                  <Text category="headline">{item.value}</Text>
-                </View>
-              );
-            })}
-          </>
+          <View
+            style={{ width: 152 * (width / 375), marginBottom: 16 }}
+          >
+            <Text category="caption1" status={"placeholder"}>Telefone</Text>
+            <Text category="headline">{item.cellphone}</Text>
+          </View>
+          <View
+            style={{ width: 152 * (width / 375), marginBottom: 16 }}
+          >
+            <Text category="caption1" status={"placeholder"}>Carro</Text>
+            <Text category="headline">{item?.driver?.cars[0] ? item?.driver?.cars[0]?.name : "Carro"}</Text>
+          </View>
+          <View
+            style={{ width: 152 * (width / 375), marginBottom: 16 }}
+          >
+            <Text category="caption1" status={"placeholder"}>Dia da saída</Text>
+            <Text category="headline">{item.departureDay}</Text>
+          </View>
+          <View
+            style={{ width: 152 * (width / 375), marginBottom: 16 }}
+          >
+            <Text category="caption1" status={"placeholder"}>Horário de saída</Text>
+            <Text category="headline">{item.departureTime}</Text>
+          </View>
+          <View
+            style={{ width: 152 * (width / 375), marginBottom: 16 }}
+          >
+            <Text category="caption1" status={"placeholder"}>Local da Saída</Text>
+            <Text category="headline">{item.departurePlace}</Text>
+          </View>
+          <View
+            style={{ width: 152 * (width / 375), marginBottom: 16 }}
+          >
+            <Text category="caption1" status={"placeholder"}>Sugestão contribuição</Text>
+            <Text category="headline">{item.contributionSuggestion}</Text>
+          </View>
 
           <View style={{ width: "100%" }}>
             <Button size="small" onPress={() => navigate("ConfirmRidePage")}>Confirmar carona</Button>
