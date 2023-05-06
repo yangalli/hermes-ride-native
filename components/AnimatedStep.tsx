@@ -95,8 +95,6 @@ const AnimatedStep = ({ step, style }: AnimatedStepProps) => {
     <View style={[styles.container, style]}>
       <Step start={true} active />
       <Step active={step >= 1} />
-      <Step active={step >= 2} />
-      <Step active={step >= 3} />
     </View>
   );
 };

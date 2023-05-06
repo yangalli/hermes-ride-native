@@ -16,11 +16,6 @@ import useRides from "../../hooks/useRides";
 const Activities = memo(() => {
   const styles = useStyleSheet(themedStyles);
   const { rides } = useRides();
-  const [dataToday, setDataToday] = React.useState(DATA_TODAY);
-
-  useEffect(() => {
-    console.log(rides);
-  }, [rides])
 
   return (
     <Container style={styles.container}>
@@ -53,61 +48,4 @@ const themedStyles = StyleService.create({
     borderBottomWidth: 1,
   },
 });
-
-const DATA_TODAY = [
-  {
-    id: 0,
-    avatar: Images.avatar0,
-    carSpaces: 4,
-    cellphone: "(61) 99901-3066",
-    departureDay: "13/01/23",
-    departureTime: "12:00",
-    departurePlace: "Asa Sul",
-    contributionSuggestion: "50 reais",
-    driver: {
-      name: "Yan Galli",
-      cars: [
-        {
-          name: "Honda HRV",
-        }
-      ]
-    }
-  },
-  {
-    id: 1,
-    avatar: Images.avatar2,
-    carSpaces: 3,
-    cellphone: "(61) 99901-3066",
-    departureDay: "13/01/23",
-    departureTime: "12:00",
-    departurePlace: "Asa Sul",
-    contributionSuggestion: "50 reais",
-    driver: {
-      name: "Alex Turboe",
-      cars: [
-        {
-          name: "Honda HRV",
-        }
-      ]
-    }
-  },
-  {
-    id: 2,
-    avatar: Images.avatar3,
-    carSpaces: 2,
-    cellphone: "(61) 99901-3066",
-    departureDay: "13/01/23",
-    departureTime: "12:00",
-    departurePlace: "Asa Sul",
-    contributionSuggestion: "50 reais",
-    driver: {
-      name: "Alex Turboe",
-      cars: [
-        {
-          name: "Honda HRV",
-        }
-      ]
-    }
-  },
-];
 

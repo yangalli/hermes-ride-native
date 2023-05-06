@@ -81,8 +81,9 @@ const HomePage = memo(() => {
   }, []);
   const [data, setData] = React.useState(dataO9);
 
-  function goToCreateRidePage() {
-    return navigate("CreateRidePage");
+  function goToCreateDriverPage() {
+    // return navigate("CreateDriverPage");
+    return navigate("SignInPage");
   }
 
   function goToDriversPage() {
@@ -113,7 +114,7 @@ const HomePage = memo(() => {
         ]}
         level="4"
       >
-        <Button style={styles.skip} onPress={() => goToCreateRidePage()} status="basic">
+        <Button style={styles.skip} onPress={() => goToCreateDriverPage()} status="basic">
           <Text children="Motorista" status="blue" />
         </Button>
 

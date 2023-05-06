@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import { View } from "react-native";
 import {
   TopNavigation,
@@ -16,14 +16,23 @@ import Text from "components/Text";
 import NavigationAction from "components/NavigationAction";
 import { RefreshControl } from "react-native-web-refresh-control";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { useNavigation } from "@react-navigation/native";
+import { useRoute, useNavigation } from "@react-navigation/native";
 
-const ProductDetails = memo(() => {
+const ConfirmRidePage = memo(() => {
+  const route = useRoute();
   const theme = useTheme();
   const { goBack, navigate } = useNavigation();
   const { height, width, top, bottom } = useLayout();
   const styles = useStyleSheet(themedStyles);
   const [value, setValue] = React.useState<number>(3);
+
+  function formatCellphone(cellphone: string) {
+    const ddd = cellphone.slice(0, 2);
+    const phoneFirstHalf = cellphone.slice(2, 7)
+    const phoneSecondHalf = cellphone.slice(7, 11)
+
+    return `(${ddd}) ${phoneFirstHalf}-${phoneSecondHalf}`;
+  }
 
   return (
     <Container style={styles.container} level="2">
@@ -58,25 +67,26 @@ const ProductDetails = memo(() => {
           <Layout style={styles.layout} level={"2"}>
             <View style={styles.topLayout}>
               <Text category="title2" status="white">
-                Yan Galli
+                {route?.params?.driver?.name}
               </Text>
-              <Button
+              {/* TODO: Add favorites */}
+              {/* <Button
                 status="transparent"
                 accessoryRight={<Icon pack="assets" name="heart" />}
-              />
+              /> */}
             </View>
 
-            <Text children="(61) 99901-3066" status="primary" category="title4" />
+            <Text children={formatCellphone(route?.params?.driver?.cellphone)} status="primary" category="title4" />
 
             <Text
               style={styles.body}
               status="snow"
               category="body"
-              children="Occaecat ipsum magna veniam proident aliquip irure enim mollit cillum esse. Dolore eu amet Lorem est quis reprehenderit eu. Aute incididunt magna voluptate incididunt irure tempor amet est quis ullamco..."
+              children="Detalhes da viagem:"
             />
 
             <View style={styles.qty}>
-              <Text children="Quantidade" uppercase status="white" category="title4" />
+              <Text children="Vagas" uppercase status="white" category="title4" />
               <View style={styles.card}>
                 <Button
                   status="transparent"
@@ -118,7 +128,7 @@ const ProductDetails = memo(() => {
   );
 });
 
-export default ProductDetails;
+export default ConfirmRidePage;
 
 const themedStyles = StyleService.create({
   container: {

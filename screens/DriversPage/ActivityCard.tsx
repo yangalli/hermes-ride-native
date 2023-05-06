@@ -132,6 +132,7 @@ const ActivityCard = memo(({ item }: ItemProps) => {
           </TouchableOpacity>
         </Animated.View>
       </TouchableOpacity>
+
       <Animated.ScrollView
         style={styleAnimated}
         scrollEventThrottle={16}
@@ -151,7 +152,7 @@ const ActivityCard = memo(({ item }: ItemProps) => {
             style={{ width: 152 * (width / 375), marginBottom: 16 }}
           >
             <Text category="caption1" status={"placeholder"}>Telefone</Text>
-            <Text category="headline">{item.cellphone}</Text>
+            <Text category="headline">{item?.driver?.cellphone}</Text>
           </View>
           <View
             style={{ width: 152 * (width / 375), marginBottom: 16 }}
@@ -185,7 +186,7 @@ const ActivityCard = memo(({ item }: ItemProps) => {
           </View>
 
           <View style={{ width: "100%" }}>
-            <Button size="small" onPress={() => navigate("ConfirmRidePage")}>Confirmar carona</Button>
+            <Button size="small" onPress={() => navigate("ConfirmRidePage", { driver: item.driver })}>Confirmar carona</Button>
           </View>
         </View>
       </Animated.ScrollView>

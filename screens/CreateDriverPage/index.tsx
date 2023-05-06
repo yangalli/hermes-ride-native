@@ -13,21 +13,21 @@ import { useForm } from "react-hook-form";
 import S from "./styles";
 import useDrivers from "../../hooks/useDrivers";
 
-const CreateRidePage = memo(() => {
+const CreateDriverPage = memo(() => {
   const { navigate } = useNavigation();
   const { width } = useLayout();
   const [index, setIndex] = React.useState<number>(0);
   const { control, handleSubmit } = useForm({
     defaultValues: {
       name: '',
-      cellphone: ''
+      cellphone: '',
     }
   });
   const { createDriver } = useDrivers();
-  const onSubmit = (data: any) => console.log(data);
 
   function handleSave(data: any) {
     createDriver(data.name, data.cellphone);
+    navigate("CreateCarPage");
   }
 
   const Tab1 = React.useCallback(() => {
@@ -37,20 +37,13 @@ const CreateRidePage = memo(() => {
           Crie seu perfil de motorista
         </Text>
 
-        {/* <InputText placeholder="Nome" control={control} /> */}
+        <InputText name="name" placeholder="Nome" control={control} />
 
-        {/* <InputText style={S.inputPhone} placeholder="Telefone" control={control} /> */}
-
-        <InputText name="name" placeholder="name" control={control} />
-
-        <InputText name="cellphone" style={S.inputPhone} placeholder="cellphone" control={control} />
-
-        {/* <InputText placeholder="password_confirmation" control={control} /> */}
+        <InputText name="cellphone" style={S.inputPhone} placeholder="Telefone" control={control} />
 
         <Button
           children="Próximo passo"
           style={S.button}
-          // onPress={() => setIndex(index + 1)}
           onPress={handleSubmit(handleSave)}
         />
       </KeyboardAwareScrollView>
@@ -73,7 +66,7 @@ const CreateRidePage = memo(() => {
         <Button
           children="Fazer cadastro"
           style={S.button}
-          onPress={() => navigate("ProfilePage")}
+          onPress={handleSubmit(handleSave)}
         />
       </KeyboardAwareScrollView>
     );
@@ -125,4 +118,4 @@ const CreateRidePage = memo(() => {
   );
 });
 
-export default CreateRidePage;
+export default CreateDriverPage;

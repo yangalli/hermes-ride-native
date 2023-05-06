@@ -3,4 +3,5 @@ export default interface Car {
   name: string;
   plate: string;
   spaces: number;
+  driverId: number;
 }

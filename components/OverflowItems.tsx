@@ -1,10 +1,9 @@
 import dayjs from "dayjs";
 import React from "react";
-import { View, Image, ImageSourcePropType, StyleSheet } from "react-native";
+import { View, ImageSourcePropType, StyleSheet } from "react-native";
 import Animated, {
   interpolate,
   useAnimatedStyle,
-  useSharedValue,
 } from "react-native-reanimated";
 import Text from "./Text";
 interface Props {
