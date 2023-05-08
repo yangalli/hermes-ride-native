@@ -27,6 +27,7 @@ const Activities = memo(() => {
       <Content contentContainerStyle={styles.content}>
         <Activity title="Motoristas" data={rides} />
       </Content>
+
       <BottomTab />
     </Container>
   );

@@ -5,9 +5,9 @@ import {
   StyleService,
   useStyleSheet,
   Avatar,
-  Button,
-  Icon,
   ViewPager,
+  Button,
+  Icon
 } from "@ui-kitten/components";
 import useLayout from "hooks/useLayout";
 
@@ -126,22 +126,24 @@ const ProfilePage = memo(() => {
             accessoryLeft={<Icon pack="assets" name="star" />}
             status={"control"}
             size={"50"}
-            children="Informações"
+            children="Meus carros"
             style={styles.mess}
           />
           <Button
             accessoryLeft={<Icon pack="assets" name="addUser" />}
             size="50"
-            children="Motoristas"
+            children="Criar Viagem"
             style={styles.following}
           />
         </View>
+
         <FrequencyTab
           selectedIndex={selectedIndex}
           onChange={setSelectedIndex}
           tabs={["Minhas Viagens", "Viagens Anteriores"]}
           style={styles.tabBar}
         />
+
         <ViewPager
           selectedIndex={selectedIndex}
           onSelect={setSelectedIndex}
@@ -171,7 +173,7 @@ const themedStyles = StyleService.create({
   },
   action: {
     flexDirection: "row",
-    marginTop: 16,
+    marginTop: 24,
     marginHorizontal: 24,
     marginBottom: 24,
   },
@@ -206,9 +208,9 @@ const themedStyles = StyleService.create({
 const DATA_USER = {
   name: "Yan Galli",
   avatar: Images.avatar11,
-  following: 348,
-  follower: 24,
-  loves: 233,
+  following: 10,
+  follower: 7,
+  loves: 3,
 };
 
 const DATA_COLLECTION = [

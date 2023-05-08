@@ -24,7 +24,7 @@ const BottomTab = memo(({ selectIndex = 0 }: Props) => {
 
   function navigateToHomePage(index: number) {
     setActiveTab(index);
-    navigate("HomePage");
+    navigate("ProfilePage");
   }
 
   return (
@@ -87,8 +87,9 @@ const themedStyles = StyleService.create({
     height: 24,
   },
 });
+
 const DATA = [
-  { id: 1, icon: "barChart1" },
-  { id: 2, icon: "logo" },
-  { id: 3, icon: "search" },
+  { id: 1, icon: "calendar" },
+  { id: 2, icon: "addUser" },
+  { id: 3, icon: "user" },
 ];

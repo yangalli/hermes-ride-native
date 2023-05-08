@@ -52,7 +52,7 @@ const EventsPage = memo(() => {
         contentContainerStyle={[S.content, { paddingBottom: bottom + 24 }]}
         ListHeaderComponent={
           <Text category="title4" status="placeholder" marginBottom={16}>
-            {DATA.length} Eventos ativos
+            {events?.length} Eventos ativos
           </Text>
         }
       />

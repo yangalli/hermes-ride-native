@@ -37,25 +37,28 @@ const HeaderProfile = memo(({ data }: DataProps) => {
             {data.following}
           </Text>
           <Text category="caption1" center capitalize>
-            following
+            Viagens
           </Text>
         </View>
+
         <Layout style={styles.line} level={"7"} />
         <View style={styles.footerItem}>
           <Text category="title3" center marginBottom={7}>
             {data.follower}
           </Text>
           <Text category="caption1" center capitalize>
-            followers
+            Dadas
           </Text>
         </View>
+
         <Layout style={styles.line} level={"7"} />
+
         <View style={styles.footerItem}>
           <Text category="title3" center marginBottom={7}>
             {data.loves}
           </Text>
           <Text category="caption1" center capitalize>
-            loves
+            Recebidas
           </Text>
         </View>
       </Layout>

@@ -89,6 +89,7 @@ const ActivityCard = memo(({ item }: ItemProps) => {
       marginBottom: withSpring(marginBottom, { damping: 12, stiffness: 120 }),
     };
   });
+
   const handleDrop = React.useCallback(() => {
     if (heightAnimated.value === 0) {
       runOnUI(() => {
@@ -98,6 +99,12 @@ const ActivityCard = memo(({ item }: ItemProps) => {
     }
     open.value = !open.value;
   }, []);
+
+  function formatDate(unformattedDate: any) {
+    const dateArray = unformattedDate.split(" ");
+
+    return dateArray[1];
+  }
 
   return (
     <Animated.View style={containerAnimated}>
@@ -170,7 +177,7 @@ const ActivityCard = memo(({ item }: ItemProps) => {
             style={{ width: 152 * (width / 375), marginBottom: 16 }}
           >
             <Text category="caption1" status={"placeholder"}>Horário de saída</Text>
-            <Text category="headline">{item.departureTime}</Text>
+            <Text category="headline">{formatDate(item.departureTime)}</Text>
           </View>
           <View
             style={{ width: 152 * (width / 375), marginBottom: 16 }}
