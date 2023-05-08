@@ -30,7 +30,7 @@ const Intro = memo(() => {
     return item.ads ? (
       <AdMob marginTop={8} />
     ) : (
-      <Button style={styles.button} {...item} size={'small'}/>
+      <Button style={styles.button} {...item} size={'small'} />
     );
   }, []);
 

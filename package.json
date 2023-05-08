@@ -16,6 +16,7 @@
     "@ui-kitten/components": "^5.1.2",
     "@ui-kitten/eva-icons": "^5.1.2",
     "axios": "^1.2.2",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.4",
     "camelcase-keys": "^8.0.2",
     "expo": "~47.0.8",
     "expo-splash-screen": "^0.17.5",
