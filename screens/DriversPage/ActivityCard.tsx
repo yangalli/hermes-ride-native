@@ -25,6 +25,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 import Driver from "../../types/entities/Driver";
+import User from "../../types/entities/User";
 
 interface Props {
   id: number;
@@ -36,6 +37,7 @@ interface Props {
   departurePlace: string;
   contributionSuggestion: string;
   driver: Driver;
+  user: User;
 }
 interface ItemProps {
   item: Props;
@@ -117,7 +119,7 @@ const ActivityCard = memo(({ item }: ItemProps) => {
           <Avatar source={Images.avatar3} size={"48"} />
           <View>
             <Text marginLeft={16} category="headline" marginBottom={4}>
-              {item.driver.name}
+              {item?.user?.name}
             </Text>
             <Text
               category="footnote"
@@ -159,13 +161,13 @@ const ActivityCard = memo(({ item }: ItemProps) => {
             style={{ width: 152 * (width / 375), marginBottom: 16 }}
           >
             <Text category="caption1" status={"placeholder"}>Telefone</Text>
-            <Text category="headline">{item?.driver?.cellphone}</Text>
+            <Text category="headline">{item?.user?.cellphone}</Text>
           </View>
           <View
             style={{ width: 152 * (width / 375), marginBottom: 16 }}
           >
             <Text category="caption1" status={"placeholder"}>Carro</Text>
-            <Text category="headline">{item?.driver?.cars[0] ? item?.driver?.cars[0]?.name : "Carro"}</Text>
+            <Text category="headline">{item?.user?.cars[0] ? item?.user?.cars[0]?.name : "Carro"}</Text>
           </View>
           <View
             style={{ width: 152 * (width / 375), marginBottom: 16 }}
@@ -193,7 +195,7 @@ const ActivityCard = memo(({ item }: ItemProps) => {
           </View>
 
           <View style={{ width: "100%" }}>
-            <Button size="small" onPress={() => navigate("ConfirmRidePage", { driver: item.driver })}>Confirmar carona</Button>
+            <Button size="small" onPress={() => navigate("ConfirmRidePage", { user: item.user })}>Confirmar carona</Button>
           </View>
         </View>
       </Animated.ScrollView>

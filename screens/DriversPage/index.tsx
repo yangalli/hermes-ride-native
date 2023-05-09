@@ -8,23 +8,22 @@ import {
 import Content from "components/Content";
 import Container from "components/Container";
 import NavigationAction from "components/NavigationAction";
-import { Images } from "assets/images";
 import Activity from "./Activity";
 import BottomTab from "components/BottomTab";
 import useRides from "../../hooks/useRides";
+import S from "./styles";
 
-const Activities = memo(() => {
-  const styles = useStyleSheet(themedStyles);
+const DriversPage = memo(() => {
   const { rides } = useRides();
 
   return (
-    <Container style={styles.container}>
+    <Container style={S.container}>
       <TopNavigation
-        style={styles.header}
+        style={S.header}
         title={"Motoristas"}
         accessoryLeft={<NavigationAction icon="undo" status="opacity" />}
       />
-      <Content contentContainerStyle={styles.content}>
+      <Content contentContainerStyle={S.content}>
         <Activity title="Motoristas" data={rides} />
       </Content>
 
@@ -33,20 +32,5 @@ const Activities = memo(() => {
   );
 });
 
-export default Activities;
-
-const themedStyles = StyleService.create({
-  container: {
-    flex: 1,
-    paddingBottom: 0,
-  },
-  content: {
-    paddingVertical: 36,
-    marginHorizontal: 24,
-  },
-  header: {
-    borderBottomColor: "color-basic-1500",
-    borderBottomWidth: 1,
-  },
-});
+export default DriversPage;
 

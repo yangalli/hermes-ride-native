@@ -18,14 +18,20 @@ function useRides() {
     departureDay: string,
     departurePlace: string,
     departureTime: string,
-    driverId: number
+    contributionSuggestion: number,
+    driverId: number,
+    userId: number,
+    eventId: number,
   ) {
     await ridesApi.postRide(
       carSpaces,
       departureDay,
       departurePlace,
       departureTime,
-      driverId
+      contributionSuggestion,
+      driverId,
+      userId,
+      eventId
     );
   }
 

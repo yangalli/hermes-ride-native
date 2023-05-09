@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   View,
   TouchableOpacity,
@@ -10,7 +10,6 @@ import {
   useStyleSheet,
   Layout,
   Icon,
-  useTheme,
 } from "@ui-kitten/components";
 import { Images } from "assets/images";
 import Text from "components/Text";
@@ -30,20 +29,12 @@ interface ItemProps {
 
 const ItemBook = ({ data, onPress }: ItemProps) => {
   const styles = useStyleSheet(themedStyles);
-  const [bookMark, setBookMark] = React.useState(false);
-  const theme = useTheme();
 
   function formatDate(unformattedDate: any) {
     const dateArray = data.startDate.split(" ");
 
     return dateArray[0];
   }
-
-  useEffect(() => {
-    console.log(data.startDate)
-    const date = new Date(data.startDate);
-    console.log(data.startDate.split(" "))
-  }, [data])
 
   return (
     <TouchableOpacity activeOpacity={0.7} onPress={onPress}>

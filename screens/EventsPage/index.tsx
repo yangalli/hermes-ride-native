@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { memo } from "react";
 import { View, FlatList } from "react-native";
 import { Layout } from "@ui-kitten/components";
 import { useNavigation } from "@react-navigation/native";
@@ -20,10 +20,6 @@ const EventsPage = memo(() => {
   const renderItem = React.useCallback(({ item }) => {
     return <ItemBook data={item} onPress={() => navigate("HomePage")} />;
   }, []);
-
-  useEffect(() => {
-    console.log(events)
-  }, [events])
 
   return (
     <Container style={S.container}>

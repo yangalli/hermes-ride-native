@@ -28,8 +28,8 @@ const CreateCarPage = memo(() => {
   const { createCar } = useCars();
 
   function handleSave(data: any) {
-    createCar(data.name, data.plate, data.spaces, 1);
-    navigate("ProfilePage");
+    // createCar(data.name, data.plate, data.spaces, 1);
+    navigate("CreateRidePage");
   }
 
   const Tab1 = React.useCallback(() => {

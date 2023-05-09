@@ -1,4 +1,5 @@
 import Driver from "./Driver";
+import User from "./User";
 
 export default interface Ride {
   id: number;
@@ -7,5 +8,7 @@ export default interface Ride {
   departurePlace: string;
   departureTime: string;
   contributionSuggestion: number;
-  driver: Driver;
+  driverId: number;
+  userId: number;
+  eventId: number;
 }

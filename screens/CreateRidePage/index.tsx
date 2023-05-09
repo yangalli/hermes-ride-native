@@ -11,69 +11,62 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import useLayout from "hooks/useLayout";
 import { useForm } from "react-hook-form";
 import S from "./styles";
-import useDrivers from "../../hooks/useDrivers";
+import useRides from "../../hooks/useRides";
 
 const CreateRidePage = memo(() => {
   const { navigate } = useNavigation();
   const { width } = useLayout();
-  const [index, setIndex] = React.useState<number>(0);
+  const [index, setIndex] = React.useState<number>(2);
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      name: '',
-      cellphone: ''
+      carSpaces: 1,
+      departureDay: '',
+      departurePlace: '',
+      departureTime: '',
+      contributionSuggestion: 20,
+      driverId: 1,
+      userId: 1,
+      eventId: 1,
     }
   });
-  const { createDriver } = useDrivers();
+  const { createRide } = useRides();
   const onSubmit = (data: any) => console.log(data);
 
   function handleSave(data: any) {
-    createDriver(data.name, data.cellphone);
+    createRide(
+      data.carSpaces,
+      data.departureDay,
+      data.departurePlace,
+      data.departureTime,
+      data.contributionSuggestion,
+      1,
+      3,
+      2
+    );
+    navigate("ProfilePage");
   }
 
   const Tab1 = React.useCallback(() => {
     return (
       <KeyboardAwareScrollView style={S.content} enableOnAndroid showsVerticalScrollIndicator={false}>
         <Text category="title3" center marginBottom={32}>
-          Crie seu perfil de motorista
+          Crie a sua viagem :)
         </Text>
 
-        {/* <InputText placeholder="Nome" control={control} /> */}
+        <InputText name="carSpaces" control={control} placeholder="Espaços no carro" />
 
-        {/* <InputText style={S.inputPhone} placeholder="Telefone" control={control} /> */}
+        <InputText name="departureDay" control={control} style={S.inputPhone} placeholder="Dia da saída" />
 
-        <InputText name="name" placeholder="name" control={control} />
+        <InputText name="departurePlace" control={control} placeholder="Local da Saída" />
 
-        <InputText name="cellphone" style={S.inputPhone} placeholder="cellphone" control={control} />
+        <InputText name="departureTime" control={control} style={S.inputPhone} placeholder="Horário da saída" />
 
-        {/* <InputText placeholder="password_confirmation" control={control} /> */}
+        <InputText name="contributionSuggestion" control={control} placeholder="Sugestão de contribuição" />
 
         <Button
           children="Próximo passo"
           style={S.button}
-          // onPress={() => setIndex(index + 1)}
           onPress={handleSubmit(handleSave)}
-        />
-      </KeyboardAwareScrollView>
-    );
-  }, [index]);
-
-  const Tab2 = React.useCallback(() => {
-    return (
-      <KeyboardAwareScrollView style={S.content} enableOnAndroid showsVerticalScrollIndicator={false}>
-        <Text category="title3" center marginBottom={32}>
-          Dados do seu carro
-        </Text>
-
-        <Input placeholder="Modelo" />
-
-        <Input style={S.inputPhone} placeholder="Placa" />
-
-        <Input placeholder="Total de espaços" />
-
-        <Button
-          children="Fazer cadastro"
-          style={S.button}
-          onPress={() => navigate("ProfilePage")}
         />
       </KeyboardAwareScrollView>
     );
@@ -81,11 +74,13 @@ const CreateRidePage = memo(() => {
 
   const renderScene = SceneMap({
     first: Tab1,
-    second: Tab2,
+    second: Tab1,
+    third: Tab1,
   });
   const [routes] = React.useState([
     { key: "first", title: "" },
     { key: "second", title: "" },
+    { key: "third", title: "" },
   ]);
 
   return (

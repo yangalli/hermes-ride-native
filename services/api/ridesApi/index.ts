@@ -11,14 +11,20 @@ const ridesApi = {
     departureDay: string,
     departurePlace: string,
     departureTime: string,
-    driverId: number
+    contributionSuggestion: number,
+    driverId: number,
+    userId: number,
+    eventId: number,
   ): Promise<AxiosResponse<Ride>> =>
     apiPost("rides", {
       carSpaces,
       departureDay,
       departurePlace,
       departureTime,
+      contributionSuggestion,
       driverId,
+      userId,
+      eventId
     }),
 };
 

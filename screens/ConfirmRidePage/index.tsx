@@ -1,12 +1,9 @@
-import React, { memo, useEffect } from "react";
+import React, { memo } from "react";
 import { View } from "react-native";
 import {
   TopNavigation,
-  StyleService,
-  useStyleSheet,
   Layout,
   Button,
-  Icon,
   Input,
   useTheme,
 } from "@ui-kitten/components";
@@ -17,13 +14,13 @@ import NavigationAction from "components/NavigationAction";
 import { RefreshControl } from "react-native-web-refresh-control";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useRoute, useNavigation } from "@react-navigation/native";
+import S from "./styles";
 
 const ConfirmRidePage = memo(() => {
   const route = useRoute();
   const theme = useTheme();
   const { goBack, navigate } = useNavigation();
-  const { height, width, top, bottom } = useLayout();
-  const styles = useStyleSheet(themedStyles);
+  const { height, width, bottom } = useLayout();
   const [value, setValue] = React.useState<number>(3);
 
   function formatCellphone(cellphone: string) {
@@ -35,7 +32,7 @@ const ConfirmRidePage = memo(() => {
   }
 
   return (
-    <Container style={styles.container} level="2">
+    <Container style={S.container} level="2">
       <Layout
         level="1"
         style={{
@@ -48,14 +45,14 @@ const ConfirmRidePage = memo(() => {
       <TopNavigation
         appearance="control"
         accessoryLeft={<NavigationAction icon="leftArrow" />}
-        style={styles.topNav}
+        style={S.topNav}
       />
       <KeyboardAwareScrollView
         enableOnAndroid
         extraScrollHeight={-bottom + 20}
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.content}
+        contentContainerStyle={S.content}
         refreshControl={<RefreshControl tintColor="#F0DF67" />}
       >
         <View
@@ -64,10 +61,10 @@ const ConfirmRidePage = memo(() => {
             backgroundColor: theme["background-basic-color-1"],
           }}
         >
-          <Layout style={styles.layout} level={"2"}>
-            <View style={styles.topLayout}>
+          <Layout style={S.layout} level={"2"}>
+            <View style={S.topLayout}>
               <Text category="title2" status="white">
-                {route?.params?.driver?.name}
+                {route?.params?.user?.name}
               </Text>
               {/* TODO: Add favorites */}
               {/* <Button
@@ -76,18 +73,18 @@ const ConfirmRidePage = memo(() => {
               /> */}
             </View>
 
-            <Text children={formatCellphone(route?.params?.driver?.cellphone)} status="primary" category="title4" />
+            <Text children={formatCellphone(route?.params?.user?.cellphone)} status="primary" category="title4" />
 
             <Text
-              style={styles.body}
+              style={S.body}
               status="snow"
               category="body"
               children="Detalhes da viagem:"
             />
 
-            <View style={styles.qty}>
+            <View style={S.qty}>
               <Text children="Vagas" uppercase status="white" category="title4" />
-              <View style={styles.card}>
+              <View style={S.card}>
                 <Button
                   status="transparent"
                   children="-"
@@ -115,87 +112,17 @@ const ConfirmRidePage = memo(() => {
           </Layout>
         </View>
       </KeyboardAwareScrollView>
-      <View style={[styles.bottom, { paddingBottom: bottom + 8 }]}>
+      <View style={[S.bottom, { paddingBottom: bottom + 8 }]}>
         <Button
           children="Cancelar"
           status="disable"
-          style={styles.addCard}
+          style={S.addCard}
           onPress={goBack}
         />
-        <Button children="Confirmar" style={styles.buyNow} onPress={() => navigate("RideSuccessPage")} />
+        <Button children="Confirmar" style={S.buyNow} onPress={() => navigate("RideSuccessPage")} />
       </View>
     </Container>
   );
 });
 
 export default ConfirmRidePage;
-
-const themedStyles = StyleService.create({
-  container: {
-    flex: 1,
-  },
-  topNav: {
-    paddingHorizontal: 4,
-  },
-  dot: {
-    alignSelf: "center",
-    marginBottom: 20,
-  },
-  layout: {
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
-    flex: 1,
-    paddingHorizontal: 24,
-  },
-  input: {
-    backgroundColor: "transparent",
-  },
-  starRate: {
-    marginVertical: 16,
-  },
-  bottom: {
-    flexDirection: "row",
-    marginHorizontal: 16,
-    paddingVertical: 8,
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
-  body: {
-    marginTop: 16
-  },
-  card: {
-    borderRadius: 12,
-    borderColor: "color-basic-1500",
-    borderWidth: 1,
-    flexDirection: "row",
-    height: 56,
-    minWidth: 124,
-    marginLeft: 16,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 8,
-  },
-  topLayout: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 24,
-    marginBottom: 8,
-  },
-  qty: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 16,
-  },
-  addCard: {
-    flex: 1,
-  },
-  buyNow: {
-    flex: 1,
-    marginLeft: 16,
-  },
-  content: {
-    paddingBottom: 60,
-  },
-});
